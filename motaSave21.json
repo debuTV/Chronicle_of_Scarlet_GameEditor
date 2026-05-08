@@ -1,0 +1,2986 @@
+{
+  "gameData": {
+    "atk": 17,
+    "bloodPoint": 3,
+    "buff": {},
+    "def": 17,
+    "equip": {
+      "jewery_1": "59",
+      "jewery_2": "56",
+      "jewery_3": null,
+      "jewery_4": null,
+      "weapon": "4"
+    },
+    "equip_pool": {
+      "4": 0,
+      "56": 0,
+      "59": 0
+    },
+    "exp": 869,
+    "formula": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "35",
+      "36",
+      "37"
+    ],
+    "gameDifficulty": 1,
+    "gameVariables": {
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "ArcanaRemi": false,
+      "BlackWhiteGameProgress": 0,
+      "BranchTask": [],
+      "Brothel": false,
+      "EnteredMaps": [
+        "Tutorial-InitMap",
+        "Tutorial-Church01",
+        "Tutorial-Church02",
+        "Tutorial-Church02b",
+        "Tutorial-Church03",
+        "Tutorial-Church04",
+        "Tutorial-Church05",
+        "Tutorial-Church06",
+        "Maincityflanroom",
+        "MaincityL1",
+        "MaincityL2",
+        "Maincitydining",
+        "Maincityaltar",
+        "Maincityaltar",
+        "Maincitychurch",
+        "Maincitydining",
+        "Maincityequipshop",
+        "Maincityflanroom",
+        "Maincityhall",
+        "MaincityL1",
+        "MaincityL2",
+        "Maincitylibrary",
+        "Maincityprison",
+        "MaincityR1",
+        "MaincityR2",
+        "Maincityremiroom",
+        "Maincityspa",
+        "Tutorial-Forest01",
+        "Tutorial-Forest02",
+        "Tutorial-Forest03",
+        "Tutorial-Forest05",
+        "Tutorial-Forest04",
+        "Tutorial-Forest06",
+        "Tutorial-Forest07",
+        "Tutorial-Forest08",
+        "Tutorial-bar",
+        "Relic_islandb",
+        "Relic_island",
+        "Relic_00",
+        "Relic_01",
+        "Relic_02",
+        "Relic_03",
+        "Relic_05",
+        "Relic_06",
+        "Relic_09",
+        "Relic_08",
+        "Relic_07",
+        "Relic_04",
+        "Relic_10",
+        "Relic_tp1",
+        "Relic_11",
+        "Relic_12",
+        "Relic_12_2",
+        "Relic_12_1",
+        "Relic_13",
+        "Relic_14",
+        "Relic_13_1",
+        "Relic_15",
+        "Relic_15_1",
+        "Relic_16",
+        "Relic_17",
+        "Relic_17_1",
+        "Relic_17_2",
+        "Relic_18",
+        "Relic_19",
+        "Relic_20",
+        "Relic_tp2",
+        "Relic_21",
+        "Relic_Boss_00",
+        "Relic_Boss_01",
+        "Relic_Boss_02",
+        "Relic_Boss_03",
+        "Relic_End_01",
+        "Relic_End_02",
+        "Relic_islandc",
+        "Tutorial-Ship05",
+        "Tutorial-Ship04",
+        "Tutorial-Ship03",
+        "Trials1-12",
+        "Trials1-0",
+        "Trials1-1",
+        "Trials1-2",
+        "Trials1-3",
+        "Trials1-4",
+        "Trials1-6",
+        "Trials1-7",
+        "Trials1-9",
+        "Trials1-5",
+        "Trials1-8",
+        "Trials1-10",
+        "Trials1-11",
+        "Trials1-6b",
+        "Trials1-3b",
+        "MirrorWorld05",
+        "MirrorWorld00",
+        "MirrorWorld01",
+        "MirrorWorld02",
+        "MirrorWorld04",
+        "MirrorWorld03",
+        "Snowfall1-0",
+        "Snowfall1-1",
+        "Snowfall1-2",
+        "Snowfall1-3",
+        "Snowfall1-4",
+        "Snowfall1-5",
+        "Snowfall1-7",
+        "Snowfall1-8",
+        "Snowfall1-6",
+        "Snowfall1-7-1",
+        "Snowfall1-9",
+        "Snowfall1-10",
+        "Snowfall1-11",
+        "Snowfall1-12",
+        "Snowfall1-14",
+        "Snowfall1-13",
+        "Snowfall1-15",
+        "Snowfall1-18",
+        "Snowfall1-16",
+        "Snowfall1-16-1",
+        "Snowfall1-16-2",
+        "Snowfall1-17",
+        "Snowfall1-18-1",
+        "Snowfall1-19",
+        "Snowfall1-22",
+        "Snowfall1-22-1",
+        "Snowfall1-23",
+        "Snowfall1-25",
+        "Snowfall1-20",
+        "Snowfall1-21",
+        "Snowfall1-21-1",
+        "Snowfall1-24",
+        "Snowfall1-26",
+        "Snowfall1-27",
+        "Snowfall1-28b",
+        "Snowfall1-28c",
+        "Snowfall1-28"
+      ],
+      "GameProgress": 20,
+      "IsFirstMission": true,
+      "Learn_Talent": true,
+      "Light&shadow2": 0,
+      "LiselotteDead": false,
+      "LuciferDead": false,
+      "MainTask": "Task024",
+      "Merit_10": 0,
+      "Merit_13": 0,
+      "Merit_3": false,
+      "Merit_4": false,
+      "Merit_5": 0,
+      "Pig": false,
+      "PlayerMapList": [
+        "6"
+      ],
+      "PlayerMissionList": [
+        "3",
+        "5",
+        "7"
+      ],
+      "RelicDoor": 1,
+      "Scarlet": false,
+      "SelectMissionId": 6,
+      "ShemhazaiDead": false,
+      "ShipAchievement": 0,
+      "Sinlibra_achi": 0,
+      "SurtrMirror": false,
+      "Temple_fire1": 0,
+      "Temple_fire2": 0,
+      "VesperDead": false,
+      "autumn": 0,
+      "ban_minimap": false,
+      "blackmoongold": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "blood_point_level": 1,
+      "bloodcrystal": 0,
+      "bloodtree": 0,
+      "bread": false,
+      "challengeMode": false,
+      "clocktower3": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "clocktowerboss": false,
+      "clocktowerleft": false,
+      "clocktowerright": false,
+      "darkforest": false,
+      "debugMode": false,
+      "equip_law_id": "0",
+      "exp_1": false,
+      "exp_2": false,
+      "fire_maxhp": 0,
+      "firstthunder": false,
+      "fuck_greenKey": 0,
+      "gold_1": false,
+      "gold_2": false,
+      "grandma": false,
+      "heartdead": false,
+      "ice_boss_fight": false,
+      "isCtrlMode": false,
+      "isEnd_A": false,
+      "isEnd_B": false,
+      "isEnd_C": false,
+      "isEnd_D": false,
+      "isbranch": false,
+      "island": 0,
+      "islandenter": false,
+      "ledwings": false,
+      "library": 0,
+      "light&shadow": 0,
+      "maid": false,
+      "mapName": "红魔王城 左连廊",
+      "minimap_level": 2,
+      "motaMode": true,
+      "nightroll": 0,
+      "nightroll2": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "offsettlebgm": false,
+      "on_battle": false,
+      "on_battle_get_item": {},
+      "on_battle_temp_atk": 0,
+      "on_battle_temp_def": 0,
+      "on_battle_temp_exp": 1294,
+      "on_battle_temp_gold": 304,
+      "on_battle_temp_maxhp": 0,
+      "on_battle_temp_mdef": 0,
+      "on_battle_temp_spd": 0,
+      "player_factional": 1,
+      "recode_enemy_id": 0,
+      "recode_enemy_type": [],
+      "refreshmupaizi": false,
+      "run": false,
+      "sacrifice_count": 0,
+      "seavillage": false,
+      "shipwreck": false,
+      "shop_level": 0,
+      "skills_battleReady": [],
+      "spa": 0,
+      "supply_id": 0,
+      "temp": 1,
+      "testMode": false,
+      "toiletmission": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "use_reset_mission": false,
+      "volcanofurnace": 0,
+      "whitenightgold": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wing": false,
+      "winter": 0,
+      "witchgarden": 0,
+      "witchpills": 0,
+      "witchyincang": 0,
+      "witchyincang2": false,
+      "wngod": 0
+    },
+    "gold": 664,
+    "hp": 2700,
+    "hp_pool": 0,
+    "item": {
+      "1": 0,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "17": 6,
+      "18": 1,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "74": 0,
+      "75": 0,
+      "89": 1,
+      "9": 0,
+      "90": 1,
+      "98": 1
+    },
+    "level": 5,
+    "maxHp": 2700,
+    "maxMp": 10,
+    "max_talent_point": 9,
+    "mdef": 42,
+    "mp": 0,
+    "partner": 0,
+    "partnerList": [
+      "1",
+      "2"
+    ],
+    "skill": [],
+    "skillSwitches": [
+      false,
+      false,
+      false
+    ],
+    "skill_mirror": [
+      "10002"
+    ],
+    "skill_pool": [
+      "10002"
+    ],
+    "skill_queue": [],
+    "spd": 8,
+    "state": [],
+    "statelight": [
+      false,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "talent": {
+      "1": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "2": 2,
+      "20": 0,
+      "21": 0,
+      "22": 0,
+      "23": 0,
+      "24": 0,
+      "25": 0,
+      "26": 0,
+      "27": 0,
+      "28": 0,
+      "29": 0,
+      "3": 1,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 0,
+      "35": 0,
+      "36": 0,
+      "37": 0,
+      "38": 0,
+      "39": 0,
+      "4": 1,
+      "40": 0,
+      "41": 0,
+      "42": 0,
+      "43": 0,
+      "44": 0,
+      "45": 0,
+      "46": 0,
+      "47": 0,
+      "48": 0,
+      "49": 0,
+      "5": 0,
+      "50": 0,
+      "51": 0,
+      "52": 0,
+      "53": 0,
+      "54": 0,
+      "55": 0,
+      "56": 0,
+      "57": 0,
+      "58": 0,
+      "59": 0,
+      "6": 0,
+      "60": 0,
+      "61": 0,
+      "62": 0,
+      "63": 0,
+      "64": 0,
+      "65": 0,
+      "66": 0,
+      "67": 0,
+      "68": 0,
+      "69": 0,
+      "7": 0,
+      "70": 0,
+      "71": 0,
+      "72": 0,
+      "73": 0,
+      "74": 0,
+      "75": 0,
+      "76": 0,
+      "77": 0,
+      "78": 0,
+      "79": 0,
+      "8": 0,
+      "80": 0,
+      "81": 0,
+      "82": 0,
+      "83": 0,
+      "84": 0,
+      "85": 0,
+      "86": 0,
+      "87": 0,
+      "88": 0,
+      "9": 0
+    },
+    "talent_point": 2,
+    "trigger_hpper": 0.5
+  },
+  "mapData": {
+    "MaincityL1": {
+      "eventdata": {
+        "BlackMoon": {
+          "dead": true,
+          "dir": 0
+        },
+        "Remilia": {
+          "page": 1
+        },
+        "Tiparrow": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow3": {
+          "dead": true,
+          "dir": 0
+        },
+        "airwall": {
+          "dead": true
+        },
+        "airwall2": {
+          "dead": true
+        },
+        "airwall3": {
+          "dead": true
+        },
+        "airwall4": {
+          "dead": true
+        },
+        "airwall5": {
+          "dead": true
+        },
+        "airwall6": {
+          "dead": true
+        },
+        "airwallbreak": {
+          "dead": true
+        },
+        "chapter1-1": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter2-14": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter2-2": {
+          "dead": true,
+          "dir": 0
+        },
+        "move11": {
+          "page": 1
+        },
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "MaincityL2": {
+      "eventdata": {
+        "Tiparrow": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow3": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow4": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow5": {
+          "dead": true,
+          "dir": 0
+        },
+        "airwall": {
+          "dead": true
+        },
+        "airwall2": {
+          "dead": true
+        },
+        "airwall3": {
+          "dead": true
+        },
+        "airwall4": {
+          "dead": true
+        },
+        "airwall5": {
+          "dead": true
+        },
+        "airwall6": {
+          "dead": true
+        },
+        "airwallbreak": {
+          "dead": true
+        },
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "MaincityR1": {
+      "eventdata": {
+        "Maid": {
+          "dir": 3
+        },
+        "Maid2": {
+          "dir": 0
+        },
+        "Maid3": {
+          "dir": 2
+        },
+        "afterHereyes": {
+          "dir": 1
+        },
+        "ban": {
+          "dir": 0
+        },
+        "ban2": {
+          "dir": 0
+        },
+        "ban3": {
+          "dir": 0
+        },
+        "ban4": {
+          "dir": 0
+        },
+        "father-hereyes": {
+          "dir": 1
+        },
+        "killMaid": {
+          "dir": 1
+        },
+        "move": {
+          "dir": 1
+        },
+        "move2": {
+          "dir": 1
+        },
+        "move3": {
+          "dir": 1
+        },
+        "move4": {
+          "dir": 3
+        },
+        "move5": {
+          "dir": 3
+        },
+        "move6": {
+          "dir": 3
+        },
+        "move7": {
+          "dir": 3
+        },
+        "move8": {
+          "dir": 2
+        },
+        "xiaozhan": {
+          "dir": 0,
+          "page": 2
+        }
+      }
+    },
+    "MaincityR2": {
+      "eventdata": {
+        "Maid": {
+          "dir": 0
+        },
+        "Maid2": {
+          "dir": 0
+        },
+        "Maid3": {
+          "dir": 0
+        },
+        "Maid4": {
+          "dir": 3
+        },
+        "Maid5": {
+          "dir": 1
+        },
+        "killMaid": {
+          "dir": 1
+        },
+        "move": {
+          "dir": 0
+        },
+        "move10": {
+          "dir": 3
+        },
+        "move11": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 1
+        },
+        "move3": {
+          "dir": 1
+        },
+        "move4": {
+          "dir": 1
+        },
+        "move5": {
+          "dir": 0
+        },
+        "move6": {
+          "dir": 0
+        },
+        "move7": {
+          "dir": 0
+        },
+        "move8": {
+          "dir": 0
+        },
+        "move9": {
+          "dir": 3
+        },
+        "xiaozhan": {
+          "dir": 0,
+          "page": 2
+        }
+      }
+    },
+    "Maincityaltar": {
+      "eventdata": {
+        "AirWall": {
+          "dead": true,
+          "dir": 0
+        },
+        "AirWall2": {
+          "dead": true,
+          "dir": 0
+        },
+        "AirWall3": {
+          "dead": true,
+          "dir": 0
+        },
+        "Camilia": {
+          "dead": true,
+          "dir": 0
+        },
+        "Nun": {
+          "dead": true,
+          "dir": 0,
+          "movey": 1
+        },
+        "Nun2": {
+          "dead": true,
+          "dir": 0,
+          "movey": 1
+        },
+        "Remilia": {
+          "dead": true,
+          "dir": 0,
+          "movex": -23,
+          "movey": -22
+        },
+        "Remilia-bloodpoint": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow3": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-11": {
+          "page": 2
+        },
+        "chapter1-3": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-4": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-5": {
+          "dead": true,
+          "dir": 0
+        },
+        "trigger": {
+          "dead": true
+        },
+        "trigger2": {
+          "dead": true
+        },
+        "trigger3": {
+          "dead": true
+        },
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "Maincitychurch": {
+      "eventdata": {
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "Maincitydining": {
+      "eventdata": {
+        "Remilia": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow2": {
+          "dead": true
+        },
+        "Tiparrow3": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tiparrow4": {
+          "dead": true
+        },
+        "Tiparrow5": {
+          "dead": true
+        },
+        "Tiparrow6": {
+          "dead": true
+        },
+        "airwall": {
+          "dead": true
+        },
+        "airwall2": {
+          "dead": true
+        },
+        "airwall3": {
+          "dead": true
+        },
+        "airwall4": {
+          "dead": true
+        },
+        "airwallbreak": {
+          "dead": true
+        },
+        "chapter1-2": {
+          "dead": true,
+          "dir": 0
+        },
+        "trigger": {
+          "dead": true
+        },
+        "trigger2": {
+          "dead": true
+        },
+        "trigger3": {
+          "dead": true
+        },
+        "trigger4": {
+          "dead": true
+        },
+        "trigger5": {
+          "dead": true
+        },
+        "trigger6": {
+          "dead": true
+        },
+        "trigger7": {
+          "dead": true
+        },
+        "trigger8": {
+          "dead": true
+        },
+        "trigger9": {
+          "dead": true
+        }
+      }
+    },
+    "Maincityequipshop": {
+      "eventdata": {
+        "Tips": {
+          "page": 1
+        },
+        "Tips2": {
+          "dead": true
+        },
+        "Tips3": {
+          "dead": true
+        },
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "Maincityflanroom": {
+      "eventdata": {
+        "Maid3": {
+          "dead": true
+        },
+        "Maid4": {
+          "dead": true,
+          "dir": 0
+        },
+        "Remilia": {
+          "dead": true,
+          "dir": 0,
+          "movex": -1
+        },
+        "Remilia2": {
+          "page": 1
+        },
+        "chapter1-0": {
+          "dead": true
+        },
+        "chapter1-12": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-21": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-25": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter2-start": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapterend": {
+          "page": 5
+        },
+        "move3": {
+          "page": 1
+        }
+      }
+    },
+    "Maincityhall": {
+      "eventdata": {
+        "BlackMoon": {
+          "dir": 0,
+          "page": 1
+        },
+        "Remilia-Relic": {
+          "dead": true,
+          "dir": 0
+        },
+        "Remilia-Tutorial2": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-10": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-21": {
+          "dead": true,
+          "dir": 0
+        },
+        "xiaozhan": {
+          "page": 2
+        }
+      }
+    },
+    "MirrorWorld00": {
+      "eventdata": {
+        "Bear": {
+          "dir": 0
+        },
+        "Bear2": {
+          "dir": 2
+        },
+        "Bear3": {
+          "dir": 3
+        },
+        "Bear4": {
+          "dir": 0
+        },
+        "Bear5": {
+          "dir": 1
+        },
+        "Bear6": {
+          "dir": 0
+        },
+        "Bear7": {
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 3
+        },
+        "move3": {
+          "dir": 0
+        },
+        "move4": {
+          "dir": 0
+        },
+        "move5": {
+          "dir": 0
+        },
+        "move6": {
+          "dir": 0
+        },
+        "move7": {
+          "dir": 3
+        },
+        "move8": {
+          "dir": 3
+        }
+      }
+    },
+    "MirrorWorld01": {
+      "eventdata": {
+        "Bear": {
+          "dir": 3
+        },
+        "Bear2": {
+          "dir": 2
+        },
+        "Bear3": {
+          "dir": 1
+        },
+        "Bear4": {
+          "dir": 0
+        },
+        "Bear5": {
+          "dir": 1
+        },
+        "Bear6": {
+          "dir": 0
+        },
+        "Bear7": {
+          "dir": 0
+        },
+        "ballion": {
+          "dir": 0
+        },
+        "ballion2": {
+          "dir": 0
+        },
+        "ballion3": {
+          "dir": 0
+        },
+        "move": {
+          "dir": 0
+        },
+        "move10": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 0
+        },
+        "move3": {
+          "dir": 0
+        },
+        "move4": {
+          "dir": 0
+        },
+        "move5": {
+          "dir": 0
+        },
+        "move6": {
+          "dir": 0
+        },
+        "move7": {
+          "dir": 0
+        },
+        "move8": {
+          "dir": 0
+        },
+        "move9": {
+          "dir": 3
+        }
+      }
+    },
+    "MirrorWorld02": {
+      "eventdata": {
+        "K-Rubia": {
+          "dir": 0
+        },
+        "Tips": {
+          "dir": 1
+        },
+        "chapter1-29": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 3
+        },
+        "shimo": {
+          "dead": true,
+          "dir": 0,
+          "movex": -10,
+          "movey": -4
+        },
+        "shimo2": {
+          "dir": 1
+        }
+      }
+    },
+    "MirrorWorld03": {
+      "eventdata": {
+        "A-Sheila": {
+          "dir": 0
+        },
+        "A-Sheila2": {
+          "dir": 0
+        },
+        "Book": {
+          "dir": 0
+        },
+        "Book10": {
+          "dir": 0
+        },
+        "Book11": {
+          "dir": 0
+        },
+        "Book12": {
+          "dir": 0
+        },
+        "Book13": {
+          "dir": 0
+        },
+        "Book14": {
+          "dir": 0
+        },
+        "Book15": {
+          "dir": 0
+        },
+        "Book16": {
+          "dir": 0
+        },
+        "Book17": {
+          "dir": 0
+        },
+        "Book18": {
+          "dir": 0
+        },
+        "Book2": {
+          "dir": 0
+        },
+        "Book3": {
+          "dir": 0
+        },
+        "Book4": {
+          "dir": 0
+        },
+        "Book5": {
+          "dir": 0
+        },
+        "Book6": {
+          "dir": 0
+        },
+        "Book7": {
+          "dir": 0
+        },
+        "Book8": {
+          "dir": 0
+        },
+        "Book9": {
+          "dir": 0
+        },
+        "M-Niyah": {
+          "dir": 0
+        },
+        "chapter1-27": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 3
+        },
+        "roll-mupaizi": {
+          "dir": 1
+        }
+      }
+    },
+    "MirrorWorld04": {
+      "eventdata": {
+        "L-Piggy": {
+          "dir": 0
+        },
+        "chapter1-28": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 3
+        }
+      }
+    },
+    "MirrorWorld05": {
+      "eventdata": {
+        "Bear": {
+          "dir": 0
+        },
+        "Bear2": {
+          "dir": 2
+        },
+        "Bear3": {
+          "dir": 2
+        },
+        "Book1": {
+          "dir": 0
+        },
+        "Book2": {
+          "dir": 0
+        },
+        "M-Vivi": {
+          "dir": 0
+        },
+        "chapter1-26": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 3
+        },
+        "move3": {
+          "dir": 0
+        },
+        "move4": {
+          "dir": 3
+        },
+        "move5": {
+          "dir": 0
+        },
+        "move6": {
+          "dir": 0
+        }
+      }
+    },
+    "Relic_00": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        },
+        "box": {
+          "dead": true
+        },
+        "chapter1-13": {
+          "dead": true
+        }
+      }
+    },
+    "Relic_02": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        }
+      }
+    },
+    "Relic_03": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        }
+      }
+    },
+    "Relic_04": {
+      "eventdata": {
+        "Atk_Seed": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips": {
+          "dead": true
+        },
+        "Tipsb": {
+          "page": 1
+        }
+      }
+    },
+    "Relic_11": {
+      "eventdata": {
+        "Tips": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Relic_15_1": {
+      "eventdata": {
+        "Mdef_Seed": {
+          "dead": true,
+          "dir": 3
+        }
+      }
+    },
+    "Relic_17": {
+      "eventdata": {
+        "Tips2": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-13": {
+          "dead": true,
+          "dir": 1
+        }
+      }
+    },
+    "Relic_19": {
+      "eventdata": {
+        "Chapter1-13": {
+          "dead": true
+        }
+      }
+    },
+    "Relic_21": {
+      "eventdata": {
+        "Def_Seed": {
+          "dead": true
+        }
+      }
+    },
+    "Relic_Boss_02": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        },
+        "Tips2": {
+          "dead": true
+        },
+        "Tips2b": {
+          "page": 1
+        },
+        "Tipsb": {
+          "page": 1
+        }
+      }
+    },
+    "Snowfall1-0": {
+      "eventdata": {
+        "chapter2-3": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-1": {
+      "eventdata": {
+        "Tips": {
+          "page": 1
+        },
+        "chapter2-4": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-10": {
+      "eventdata": {
+        "chapter2-7": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-11": {
+      "eventdata": {
+        "chapter2-8": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-16": {
+      "eventdata": {
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-16-1": {
+      "eventdata": {
+        "chapter2-9": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-16-2": {
+      "eventdata": {
+        "Lucifer": {
+          "dead": true,
+          "dir": 0,
+          "movex": 10,
+          "movey": -5
+        },
+        "Vesper": {
+          "dead": true,
+          "dir": 1,
+          "movex": 5,
+          "movey": 1
+        },
+        "chapter2-10": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-17": {
+      "eventdata": {
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-18": {
+      "eventdata": {
+        "Atk_Seed": {
+          "dead": true
+        },
+        "Atk_Seed2": {
+          "dead": true
+        },
+        "Def_Seed": {
+          "dead": true
+        },
+        "Def_Seed2": {
+          "dead": true
+        },
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-18-1": {
+      "eventdata": {
+        "piot": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-22-1": {
+      "eventdata": {
+        "piot": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-25": {
+      "eventdata": {
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-27": {
+      "eventdata": {
+        "HP_Seed2": {
+          "dead": true,
+          "dir": 3
+        },
+        "HP_Seed3": {
+          "dead": true,
+          "dir": 3
+        },
+        "Mdef_Seed": {
+          "dead": true,
+          "dir": 3
+        },
+        "Mdef_Seed2": {
+          "dead": true,
+          "dir": 3
+        }
+      }
+    },
+    "Snowfall1-28": {
+      "eventdata": {
+        "BGM": {
+          "dead": true
+        },
+        "Remilia": {
+          "dead": true,
+          "movex": -20,
+          "movey": -11
+        },
+        "enemy10": {
+          "dead": true
+        },
+        "enemy11": {
+          "dead": true
+        },
+        "enemy12": {
+          "dead": true
+        },
+        "enemy13": {
+          "dead": true
+        },
+        "enemy15": {
+          "dead": true
+        },
+        "enemy17": {
+          "dead": true
+        },
+        "enemy18": {
+          "dead": true
+        },
+        "enemy19": {
+          "dead": true
+        },
+        "enemy2": {
+          "dead": true
+        },
+        "enemy20": {
+          "dead": true
+        },
+        "enemy21": {
+          "dead": true
+        },
+        "enemy22": {
+          "dead": true
+        },
+        "enemy23": {
+          "dead": true
+        },
+        "enemy25": {
+          "dead": true
+        },
+        "enemy26": {
+          "dead": true
+        },
+        "enemy3": {
+          "dead": true
+        },
+        "enemy30": {
+          "dead": true
+        },
+        "enemy31": {
+          "dead": true
+        },
+        "enemy33": {
+          "dead": true
+        },
+        "enemy34": {
+          "dead": true
+        },
+        "enemy35": {
+          "dead": true
+        },
+        "enemy37": {
+          "dead": true
+        },
+        "enemy38": {
+          "dead": true
+        },
+        "enemy39": {
+          "dead": true
+        },
+        "enemy4": {
+          "dead": true
+        },
+        "enemy45": {
+          "dead": true
+        },
+        "enemy48": {
+          "dead": true
+        },
+        "enemy5": {
+          "dead": true
+        },
+        "enemy50": {
+          "dead": true
+        },
+        "enemy51": {
+          "dead": true
+        },
+        "enemy52": {
+          "dead": true
+        },
+        "enemy53": {
+          "dead": true
+        },
+        "enemy54": {
+          "dead": true
+        },
+        "enemy55": {
+          "dead": true
+        },
+        "enemy57": {
+          "dead": true
+        },
+        "enemy59": {
+          "dead": true
+        },
+        "enemy6": {
+          "dead": true
+        },
+        "enemy60": {
+          "dead": true
+        },
+        "enemy61": {
+          "dead": true
+        },
+        "enemy62": {
+          "dead": true
+        },
+        "enemy64": {
+          "dead": true
+        },
+        "enemy65": {
+          "dead": true
+        },
+        "enemy69": {
+          "dead": true
+        },
+        "enemy7": {
+          "dead": true
+        },
+        "enemy70": {
+          "dead": true
+        },
+        "enemy71": {
+          "dead": true
+        },
+        "enemy73": {
+          "dead": true
+        },
+        "enemy74": {
+          "dead": true
+        },
+        "enemy75": {
+          "dead": true
+        },
+        "enemy77": {
+          "dead": true
+        },
+        "enemy8": {
+          "dead": true
+        },
+        "enemy80": {
+          "dead": true
+        },
+        "enemy81": {
+          "dead": true
+        },
+        "enemy82": {
+          "dead": true
+        },
+        "enemy9": {
+          "dead": true
+        },
+        "piot": {
+          "dead": true
+        },
+        "piot2": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-28b": {
+      "eventdata": {
+        "piot": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-28c": {
+      "eventdata": {
+        "piot": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-4": {
+      "eventdata": {
+        "chapter2-5": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-6": {
+      "eventdata": {
+        "Speed_Seed": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-7": {
+      "eventdata": {
+        "chapter2-6": {
+          "dead": true
+        }
+      }
+    },
+    "Snowfall1-7-1": {
+      "eventdata": {
+        "chapter2-6": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Snowfall1-9": {
+      "eventdata": {
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-0": {
+      "eventdata": {
+        "Tips": {},
+        "Tips2": {
+          "dead": true
+        },
+        "chapter1-21b": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-1": {
+      "eventdata": {
+        "chapter1-21b": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-11": {
+      "eventdata": {
+        "HP_Seed2": {
+          "dead": true,
+          "dir": 3
+        }
+      }
+    },
+    "Trials1-3": {
+      "eventdata": {
+        "piot": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-3b": {
+      "eventdata": {
+        "Anim": {
+          "dir": 3
+        },
+        "Anim10": {
+          "dir": 3
+        },
+        "Anim11": {
+          "dir": 3
+        },
+        "Anim12": {
+          "dir": 3
+        },
+        "Anim13": {
+          "dir": 3
+        },
+        "Anim14": {
+          "dir": 3
+        },
+        "Anim2": {
+          "dir": 3
+        },
+        "Anim3": {
+          "dir": 3
+        },
+        "Anim4": {
+          "dir": 3
+        },
+        "Anim5": {
+          "dir": 3
+        },
+        "Anim6": {
+          "dir": 3
+        },
+        "Anim7": {
+          "dir": 3
+        },
+        "Anim8": {
+          "dir": 3
+        },
+        "Anim9": {
+          "dir": 3
+        },
+        "Fire": {
+          "dir": 0
+        },
+        "Fire2": {
+          "dir": 0
+        },
+        "Fire3": {
+          "dir": 0
+        },
+        "Fire4": {
+          "dir": 0
+        },
+        "Fire5": {
+          "dir": 0
+        },
+        "Fire6": {
+          "dir": 0
+        },
+        "enemy26": {
+          "dir": 2,
+          "movey": 3,
+          "page": 2
+        },
+        "lizi3": {
+          "dir": 1
+        },
+        "piot": {
+          "dead": true,
+          "dir": 3
+        }
+      }
+    },
+    "Trials1-5": {
+      "eventdata": {
+        "HP_Seed": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-6": {
+      "eventdata": {
+        "剧情": {
+          "dead": true
+        }
+      }
+    },
+    "Trials1-6b": {
+      "eventdata": {
+        "Speed_Seed": {
+          "dead": true,
+          "dir": 3
+        },
+        "剧情": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Trials1-8": {
+      "eventdata": {
+        "Mdef_Seed": {
+          "dead": true,
+          "dir": 0
+        },
+        "剧情": {
+          "dead": true
+        }
+      }
+    },
+    "Tutorial-Church01": {
+      "eventdata": {
+        "Light31": {
+          "dir": 0
+        },
+        "Light32": {
+          "dir": 0
+        },
+        "Tips": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips3": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips4": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_door": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 0
+        },
+        "red_door": {
+          "dead": true,
+          "dir": 0
+        },
+        "red_door8": {
+          "dead": true,
+          "dir": 3
+        },
+        "red_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "red_key2": {
+          "dead": true,
+          "dir": 0
+        },
+        "undeplete_roadblocks": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church02": {
+      "eatruby": 4,
+      "eventdata": {
+        "Light31": {
+          "dir": 0
+        },
+        "Light32": {
+          "dir": 0
+        },
+        "Tips": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips3": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips4": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips5": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_hp": {
+          "dead": true,
+          "dir": 0
+        },
+        "door": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy2": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy23": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy3": {
+          "dead": true,
+          "dir": 1
+        },
+        "green_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "green_hp2": {
+          "dead": true,
+          "dir": 0
+        },
+        "green_hp3": {
+          "dead": true,
+          "dir": 0
+        },
+        "maxhp_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 0
+        },
+        "move2": {
+          "dir": 3
+        },
+        "red_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "red_hp": {
+          "dead": true,
+          "dir": 0
+        },
+        "undeplete_roadblocks": {
+          "dead": true,
+          "dir": 3
+        },
+        "undeplete_roadblocks2": {
+          "dead": true,
+          "dir": 3
+        },
+        "undeplete_roadblocks3": {
+          "dead": true,
+          "dir": 3
+        },
+        "use": {
+          "dir": 0
+        },
+        "use2": {
+          "dir": 0
+        },
+        "yellow_hp": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church02b": {
+      "eventdata": {
+        "Tips": {
+          "dir": 1,
+          "movex": 1,
+          "page": 1
+        },
+        "Tips4": {
+          "dir": 0
+        },
+        "enemy": {
+          "dead": true,
+          "dir": 0
+        },
+        "green_hp2": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 0
+        },
+        "move2": {
+          "dir": 3
+        },
+        "yellow_door": {
+          "dir": 0
+        },
+        "yellow_door2": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_key": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church03": {
+      "eatruby": 2,
+      "eventdata": {
+        "Light31": {
+          "dir": 0
+        },
+        "Light32": {
+          "dir": 0
+        },
+        "Light33": {
+          "dir": 0
+        },
+        "Tips5": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips6": {
+          "dir": 1,
+          "movey": 1,
+          "page": 1
+        },
+        "blue_door5": {
+          "dead": true,
+          "dir": 3
+        },
+        "blue_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy17": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy2": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy23": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy8": {
+          "dead": true,
+          "dir": 2
+        },
+        "green_hp": {
+          "dead": true,
+          "dir": 0
+        },
+        "green_hp2": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 2
+        },
+        "move2": {
+          "dir": 3
+        },
+        "red_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "red_gem2": {
+          "dead": true,
+          "dir": 0
+        },
+        "red_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_door10": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door9": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_hp4": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church04": {
+      "eatruby": 8,
+      "eventdata": {
+        "Light29": {
+          "dir": 0
+        },
+        "Light30": {
+          "dir": 0
+        },
+        "Light31": {
+          "dir": 0
+        },
+        "Light32": {
+          "dir": 0
+        },
+        "Tips6": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_door5": {
+          "dir": 0
+        },
+        "blue_gem": {
+          "dead": true,
+          "dir": 1
+        },
+        "blue_gem2": {
+          "dead": true,
+          "dir": 1
+        },
+        "blue_gem3": {
+          "dead": true,
+          "dir": 1
+        },
+        "blue_hp3": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_hp4": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_hp8": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "blue_key2": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy11": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy13": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy17": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy23": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy24": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy25": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy26": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy3": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy4": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy5": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy9": {
+          "dead": true,
+          "dir": 1
+        },
+        "green_gem": {
+          "dead": true,
+          "dir": 1
+        },
+        "green_hp2": {
+          "dead": true,
+          "dir": 0
+        },
+        "green_hp3": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 0
+        },
+        "move2": {
+          "dir": 1
+        },
+        "red_gem4": {
+          "dead": true,
+          "dir": 1
+        },
+        "red_gem5": {
+          "dead": true,
+          "dir": 1
+        },
+        "red_gem6": {
+          "dead": true,
+          "dir": 1
+        },
+        "red_gem7": {
+          "dead": true,
+          "dir": 1
+        },
+        "yellow_door10": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door11": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door5": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door8": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_door9": {
+          "dead": true,
+          "dir": 3
+        },
+        "yellow_hp10": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp11": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp12": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp4": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp5": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key2": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key3": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key4": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key5": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church05": {
+      "eatruby": 7,
+      "eventdata": {
+        "Light29": {
+          "dir": 0
+        },
+        "Light30": {
+          "dir": 0
+        },
+        "Light31": {
+          "dir": 0
+        },
+        "Light32": {
+          "dir": 0
+        },
+        "blue_door3": {
+          "dead": true,
+          "dir": 3
+        },
+        "blue_gem": {
+          "dead": true,
+          "dir": 1
+        },
+        "blue_gem2": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy12": {
+          "dead": true,
+          "dir": 2
+        },
+        "enemy15": {
+          "dead": true,
+          "dir": 2
+        },
+        "enemy16": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy29": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy31": {
+          "dead": true,
+          "dir": 2
+        },
+        "enemy32": {
+          "dead": true,
+          "dir": 2
+        },
+        "enemy35": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy36": {
+          "dead": true,
+          "dir": 1
+        },
+        "enemy37": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy38": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy39": {
+          "dead": true,
+          "dir": 3
+        },
+        "green_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "maxhp_gem": {
+          "dead": true,
+          "dir": 0
+        },
+        "maxhp_gem3": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 0
+        },
+        "red_gem": {
+          "dead": true,
+          "dir": 1
+        },
+        "red_gem5": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp10": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp11": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp12": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp13": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp14": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp15": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp16": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_hp17": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key2": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key3": {
+          "dead": true,
+          "dir": 0
+        },
+        "yellow_key4": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Church06": {
+      "eventdata": {
+        "Light": {
+          "dir": 0
+        },
+        "Light2": {
+          "dir": 0
+        },
+        "Light3": {
+          "dir": 0
+        },
+        "Light4": {
+          "dir": 0
+        },
+        "Light5": {
+          "dir": 0
+        },
+        "Light6": {
+          "dir": 0
+        },
+        "Tips5": {
+          "dead": true,
+          "dir": 0
+        },
+        "door": {
+          "dead": true,
+          "dir": 3
+        },
+        "door2": {
+          "dead": true,
+          "dir": 3
+        },
+        "door3": {
+          "dead": true,
+          "dir": 3
+        },
+        "door4": {
+          "dead": true,
+          "dir": 3
+        },
+        "door5": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy18": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 3
+        },
+        "move2": {
+          "dir": 0,
+          "page": 3
+        }
+      }
+    },
+    "Tutorial-Forest01": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        },
+        "Tips1b": {
+          "page": 2
+        },
+        "Tips2": {
+          "dead": true
+        },
+        "Tips2b": {
+          "page": 1
+        },
+        "chapter1-6": {
+          "dead": true
+        }
+      }
+    },
+    "Tutorial-Forest02": {
+      "eventdata": {
+        "Tips2": {
+          "dead": true
+        },
+        "piot": {
+          "dead": true
+        },
+        "piotb": {
+          "page": 1
+        }
+      }
+    },
+    "Tutorial-Forest03": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        },
+        "Tips2": {
+          "dead": true
+        },
+        "Tips2b": {
+          "page": 1
+        },
+        "Tipsb": {
+          "page": 1
+        }
+      }
+    },
+    "Tutorial-Forest05": {
+      "eventdata": {
+        "Tips": {
+          "dead": true
+        }
+      }
+    },
+    "Tutorial-Forest06": {
+      "eventdata": {
+        "Tips2": {
+          "dead": true
+        }
+      }
+    },
+    "Tutorial-Forest07": {
+      "eventdata": {
+        "Tips": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips2": {
+          "dead": true,
+          "dir": 0
+        },
+        "Tips2b": {
+          "dir": 1,
+          "page": 1
+        },
+        "Tipsb": {
+          "dir": 1,
+          "page": 1
+        },
+        "blue_door5": {
+          "dir": 0
+        },
+        "door": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy10": {
+          "dead": true,
+          "debuff": {
+            "0": {
+              "damage": 54
+            }
+          },
+          "dir": 0
+        },
+        "enemy11": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy12": {
+          "dead": true,
+          "debuff": {
+            "0": {
+              "damage": 27
+            }
+          },
+          "dir": 0
+        },
+        "enemy13": {
+          "dead": true,
+          "debuff": {
+            "0": {
+              "damage": 27
+            }
+          },
+          "dir": 0
+        },
+        "enemy14": {
+          "dead": true,
+          "debuff": {
+            "0": {
+              "damage": 27
+            }
+          },
+          "dir": 0
+        },
+        "enemy15": {
+          "dead": true,
+          "dir": 0
+        },
+        "enemy9": {
+          "dead": true,
+          "debuff": {
+            "0": {
+              "damage": 27
+            }
+          },
+          "dir": 0
+        },
+        "green_hp": {
+          "dir": 0
+        },
+        "green_hp2": {
+          "dir": 0
+        },
+        "move": {
+          "dir": 1
+        },
+        "move3": {
+          "dir": 2
+        },
+        "red_door": {
+          "dead": true,
+          "dir": 3
+        },
+        "red_hp": {
+          "dir": 1
+        },
+        "red_hp2": {
+          "dir": 1
+        },
+        "yellow_door10": {
+          "dir": 0
+        },
+        "yellow_door11": {
+          "dir": 0
+        },
+        "yellow_door9": {
+          "dir": 0
+        },
+        "yellow_hp2": {
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Forest08": {
+      "eventdata": {
+        "Remilia": {
+          "dead": true,
+          "dir": 2,
+          "movex": -9
+        },
+        "Remilia2": {
+          "dir": 1,
+          "page": 1
+        },
+        "chapter1-7": {
+          "dead": true,
+          "dir": 0
+        },
+        "chapter1-9": {
+          "dead": true,
+          "dir": 0
+        },
+        "move": {
+          "dir": 1
+        },
+        "move2": {
+          "dir": 0
+        },
+        "touchevent": {
+          "dir": 0
+        },
+        "touchevent10": {
+          "dir": 0
+        },
+        "touchevent11": {
+          "dir": 0
+        },
+        "touchevent12": {
+          "dir": 0
+        },
+        "touchevent13": {
+          "dir": 0
+        },
+        "touchevent14": {
+          "dir": 0
+        },
+        "touchevent15": {
+          "dir": 0
+        },
+        "touchevent16": {
+          "dir": 0
+        },
+        "touchevent17": {
+          "dir": 0
+        },
+        "touchevent18": {
+          "dir": 0
+        },
+        "touchevent2": {
+          "dir": 0
+        },
+        "touchevent3": {
+          "dir": 0
+        },
+        "touchevent4": {
+          "dir": 0
+        },
+        "touchevent5": {
+          "dir": 0
+        },
+        "touchevent6": {
+          "dir": 0
+        },
+        "touchevent7": {
+          "dir": 0
+        },
+        "touchevent8": {
+          "dir": 0
+        },
+        "touchevent9": {
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-InitMap": {
+      "eventdata": {
+        "Tips2": {
+          "dead": true,
+          "dir": 0
+        }
+      }
+    },
+    "Tutorial-Ship03": {
+      "eventdata": {
+        "chapter1-20": {
+          "dead": true,
+          "dir": 0
+        },
+        "door": {
+          "dead": true,
+          "dir": 3
+        },
+        "door2": {
+          "dead": true,
+          "dir": 3
+        },
+        "door3": {
+          "dead": true,
+          "dir": 3
+        },
+        "door4": {
+          "dead": true,
+          "dir": 3
+        },
+        "door5": {
+          "dead": true,
+          "dir": 3
+        },
+        "door6": {
+          "dead": true,
+          "dir": 3
+        },
+        "enemy": {
+          "dead": true
+        },
+        "enemy2": {
+          "dead": true,
+          "mapSkill": {
+            "0": {
+              "20006": -1
+            }
+          }
+        },
+        "enemy3": {
+          "dead": true,
+          "mapSkill": {
+            "0": {
+              "20006": -1
+            }
+          }
+        },
+        "enemy4": {
+          "dead": true,
+          "mapSkill": {
+            "0": {
+              "20006": -1
+            }
+          }
+        },
+        "enemy5": {
+          "dead": true,
+          "mapSkill": {
+            "0": {
+              "20006": -1
+            }
+          }
+        },
+        "enemy6": {
+          "dead": true,
+          "mapSkill": {
+            "0": {
+              "20006": -1
+            }
+          }
+        },
+        "red_hp6": {
+          "dead": true
+        }
+      }
+    },
+    "Tutorial-bar": {
+      "eventdata": {
+        "Light": {
+          "dir": 2
+        },
+        "Light2": {
+          "dir": 2
+        },
+        "Light4": {
+          "dir": 1
+        },
+        "Light5": {
+          "dir": 1
+        },
+        "Remilia": {
+          "dir": 0
+        },
+        "Sailor": {
+          "dir": 3
+        },
+        "Sailor2": {
+          "dir": 3
+        },
+        "Sailor3": {
+          "dir": 0
+        },
+        "Sailor4": {
+          "dir": 2
+        },
+        "Sailor5": {
+          "dir": 3
+        },
+        "bartender": {
+          "dir": 0
+        },
+        "businessman": {
+          "dir": 0,
+          "movex": -1,
+          "movey": -1,
+          "page": 1
+        },
+        "chapter1-8": {
+          "dead": true,
+          "dir": 0
+        },
+        "door": {
+          "dir": 3
+        },
+        "move": {
+          "dir": 3
+        },
+        "unpassable1": {
+          "dir": 0
+        },
+        "unpassable2": {
+          "dir": 0
+        }
+      }
+    }
+  },
+  "map_modulate": "ffffffff",
+  "playerData": {
+    "Player": {
+      "direction": 1,
+      "mapKey": "MaincityL1",
+      "playerID": 3,
+      "player_frame": 6,
+      "player_texture": "res://Resources/Character/S-Flandre-disaster.png",
+      "position": "(34, 7)",
+      "rollingbreak": 0,
+      "rollingd": -1,
+      "self_modulate": "ffffffff"
+    }
+  },
+  "saveCode": "wdmotaCollection96513",
+  "time": 1778239844.797
+}
