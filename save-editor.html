@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chronicle of Scarlet 存档编辑器</title>
+</head>
+<body>
+  <main>
+    <h1>Chronicle of Scarlet 存档编辑器</h1>
+    <p>上传 save，改几个固定项，点下载后自动生成新的 .save。整个流程都在浏览器本地完成。</p>
+    <p>
+      <strong id="selfTestBadge">前端加解密自检中</strong>
+    </p>
+    <hr>
+    <section>
+      <h2>文件操作</h2>
+      <p>Windows 默认目录：<code>C:\Users\你的用户名\AppData\Roaming\Godot\app_userdata\Chronicle of Scarlet</code></p>
+      <p>
+        <label for="saveInput">选择存档文件：</label>
+        <input id="saveInput" type="file" accept=".save">
+      </p>
+      <p><strong>状态：</strong><span id="statusPill">等待上传</span></p>
+      <p id="statusText">还没有读取任何存档。</p>
+      <ul>
+        <li>文件：<strong id="summaryFile">未加载</strong></li>
+        <li>地图：<strong id="summaryMap">-</strong></li>
+        <li>等级 / 金币：<strong id="summaryEconomy">-</strong></li>
+        <li>主线进度：<strong id="summaryProgress">-</strong></li>
+      </ul>
+      <p>
+        <button id="fillMaxButton" type="button" disabled>当前 HP/MP 补满</button>
+        <button id="archmageButton" type="button" disabled>大法师模式</button>
+        <button id="richButton" type="button" disabled>金币改成 999999</button>
+      </p>
+      <p>
+        <button id="downloadButton" type="button" disabled>下载修改后的 .save</button>
+      </p>
+      <p>下载时会自动把顶层 <code>saveCode</code> 修正成游戏校验需要的固定值。</p>
+    </section>
+    <hr>
+    <section>
+      <h2>固定字段编辑</h2>
+      <p>这里只放常用字段。未显示的存档内容会原样保留。</p>
+      <form id="editorForm"></form>
+    </section>
+  </main>
+
+  <script>
+    const AES_BLOCK_SIZE = 16;
+    const ENCRYPTED_MAGIC = [0x47, 0x44, 0x45, 0x43];
+    const SAVE_HEADER_SIZE = 44;
+    const VARIANT_HEADER_SIZE = 12;
+    const VARIANT_PADDING = 4;
+    const VARIANT_STRING_TYPE = 4;
+    const SAVE_PASSWORD = "NV91UE09G8G7DUJ37ZPCKBNRA0MQ8V8X";
+    const SAVE_CODE = "wdmotaCollection96513";
+    const SELF_TEST_VECTOR = {
+      ivHex: "000102030405060708090a0b0c0d0e0f",
+      keyHex: "3337326132336139366235663336303265616436616264653039316566313736",
+      plainHex: "2000000004000000160000007b2274223a312c2273617665436f6465223a2278227d0000",
+      blobHex: "4744454398b3c8dbc7dfbcc9d135d7df935f066f2400000000000000000102030405060708090a0b0c0d0e0f198aa87ad8bcd376c4e0e3f22292221191803a61f142dbe80ea0ab7a188eda349e48d81c2c34748662b66c7593c5bbc6",
+      text: '{"t":1,"saveCode":"x"}'
+    };
+
+    const SECTION_CONFIG = [
+      {
+        title: "基础数值",
+        description: "血量、蓝量、攻击、防御和资源都放在这里。适合直接做常见强度调整。",
+        fields: [
+          { id: "hp", label: "当前 HP", path: ["gameData", "hp"], type: "number", min: 0 },
+          { id: "maxHp", label: "最大 HP", path: ["gameData", "maxHp"], type: "number", min: 1 },
+          { id: "mp", label: "当前 MP", path: ["gameData", "mp"], type: "number", min: 0 },
+          { id: "maxMp", label: "最大 MP", path: ["gameData", "maxMp"], type: "number", min: 0 },
+          { id: "atk", label: "攻击", path: ["gameData", "atk"], type: "number", min: 0 },
+          { id: "def", label: "防御", path: ["gameData", "def"], type: "number", min: 0 },
+          { id: "mdef", label: "魔防", path: ["gameData", "mdef"], type: "number", min: 0 },
+          { id: "spd", label: "速度", path: ["gameData", "spd"], type: "number", min: 0 },
+          { id: "gold", label: "金币", path: ["gameData", "gold"], type: "number", min: 0 },
+          { id: "exp", label: "经验", path: ["gameData", "exp"], type: "number", min: 0 },
+          { id: "level", label: "等级", path: ["gameData", "level"], type: "number", min: 1 },
+          { id: "bloodPoint", label: "血点", path: ["gameData", "bloodPoint"], type: "number", min: 0 },
+          { id: "talentPoint", label: "天赋点", path: ["gameData", "talent_point"], type: "number", min: 0 },
+          { id: "partner", label: "当前伙伴 ID", path: ["gameData", "partner"], type: "number", min: 0 }
+        ]
+      }
+    ];
+
+    const editorForm = document.getElementById("editorForm");
+    const saveInput = document.getElementById("saveInput");
+    const fillMaxButton = document.getElementById("fillMaxButton");
+    const archmageButton = document.getElementById("archmageButton");
+    const richButton = document.getElementById("richButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const statusPill = document.getElementById("statusPill");
+    const statusText = document.getElementById("statusText");
+    const summaryFile = document.getElementById("summaryFile");
+    const summaryMap = document.getElementById("summaryMap");
+    const summaryEconomy = document.getElementById("summaryEconomy");
+    const summaryProgress = document.getElementById("summaryProgress");
+    const selfTestBadge = document.getElementById("selfTestBadge");
+
+    let loadedSaveData = null;
+    let uploadedFileName = "";
+
+    const MD5_SHIFTS = [
+      7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
+      5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
+      4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
+      6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
+    ];
+    const MD5_K = new Uint32Array(64);
+    for (let index = 0; index < 64; index += 1) {
+      MD5_K[index] = Math.floor(Math.abs(Math.sin(index + 1)) * 0x100000000) >>> 0;
+    }
+
+    const AES_SBOX = Uint8Array.from([
+      0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
+      0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
+      0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
+      0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75,
+      0x09, 0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0, 0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3, 0x2f, 0x84,
+      0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b, 0x6a, 0xcb, 0xbe, 0x39, 0x4a, 0x4c, 0x58, 0xcf,
+      0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85, 0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8,
+      0x51, 0xa3, 0x40, 0x8f, 0x92, 0x9d, 0x38, 0xf5, 0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2,
+      0xcd, 0x0c, 0x13, 0xec, 0x5f, 0x97, 0x44, 0x17, 0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19, 0x73,
+      0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88, 0x46, 0xee, 0xb8, 0x14, 0xde, 0x5e, 0x0b, 0xdb,
+      0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c, 0xc2, 0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79,
+      0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5, 0x4e, 0xa9, 0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08,
+      0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,
+      0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,
+      0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
+      0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
+    ]);
+    const AES_RCON = Uint8Array.from([0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36]);
+
+    function renderForm() {
+      editorForm.innerHTML = "";
+
+      SECTION_CONFIG.forEach((section) => {
+        const block = document.createElement("fieldset");
+
+        const title = document.createElement("legend");
+        title.textContent = section.title;
+        block.appendChild(title);
+
+        const description = document.createElement("p");
+        description.textContent = section.description;
+        block.appendChild(description);
+
+        section.fields.forEach((field) => {
+          const wrapper = document.createElement("p");
+
+          if (field.type === "checkbox") {
+            const label = document.createElement("label");
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.id = field.id;
+            input.dataset.fieldId = field.id;
+            input.disabled = true;
+            input.addEventListener("change", updateSummary);
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(` ${field.label}`));
+            wrapper.appendChild(label);
+
+            if (field.help) {
+              wrapper.appendChild(document.createTextNode(` ${field.help}`));
+            }
+          } else {
+            const label = document.createElement("label");
+            label.setAttribute("for", field.id);
+            label.textContent = `${field.label}：`;
+            wrapper.appendChild(label);
+
+            const input = document.createElement("input");
+            input.type = field.type;
+            input.id = field.id;
+            input.dataset.fieldId = field.id;
+            input.disabled = true;
+            if (field.min !== undefined) {
+              input.min = String(field.min);
+            }
+            if (field.type === "number") {
+              input.step = "1";
+              input.inputMode = "numeric";
+            }
+            input.addEventListener("input", updateSummary);
+            wrapper.appendChild(input);
+          }
+
+          block.appendChild(wrapper);
+        });
+
+        editorForm.appendChild(block);
+      });
+    }
+
+    function getAllFields() {
+      return SECTION_CONFIG.flatMap((section) => section.fields);
+    }
+
+    function setControlsDisabled(disabled) {
+      getAllFields().forEach((field) => {
+        const input = document.getElementById(field.id);
+        if (input) {
+          input.disabled = disabled;
+        }
+      });
+
+      fillMaxButton.disabled = disabled;
+      archmageButton.disabled = disabled;
+      richButton.disabled = disabled;
+      downloadButton.disabled = disabled;
+    }
+
+    function setStatus(kind, text) {
+      statusPill.textContent = kind === "ok" ? "已就绪" : kind === "error" ? "读取失败" : "处理中";
+      statusText.textContent = text;
+    }
+
+    function setSelfTestState(_kind, text) {
+      selfTestBadge.textContent = text;
+    }
+
+    function alignSize(size, blockSize) {
+      return size + ((blockSize - (size % blockSize)) % blockSize);
+    }
+
+    function toUtf8Bytes(text) {
+      return new TextEncoder().encode(text);
+    }
+
+    function fromUtf8Bytes(bytes) {
+      return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    }
+
+    function concatBytes(chunks) {
+      const total = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+      const merged = new Uint8Array(total);
+      let offset = 0;
+      chunks.forEach((chunk) => {
+        merged.set(chunk, offset);
+        offset += chunk.length;
+      });
+      return merged;
+    }
+
+    function bytesEqual(left, right) {
+      if (left.length !== right.length) {
+        return false;
+      }
+      for (let index = 0; index < left.length; index += 1) {
+        if (left[index] !== right[index]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function bytesToHex(bytes) {
+      return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+    }
+
+    function hexToBytes(hex) {
+      if (hex.length % 2 !== 0) {
+        throw new Error("hex string length must be even");
+      }
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let index = 0; index < hex.length; index += 2) {
+        bytes[index / 2] = Number.parseInt(hex.slice(index, index + 2), 16);
+      }
+      return bytes;
+    }
+
+    function readUint32LE(bytes, offset) {
+      const view = new DataView(bytes.buffer, bytes.byteOffset + offset, 4);
+      return view.getUint32(0, true);
+    }
+
+    function writeUint32LE(value) {
+      const bytes = new Uint8Array(4);
+      const view = new DataView(bytes.buffer);
+      view.setUint32(0, value >>> 0, true);
+      return bytes;
+    }
+
+    function readUint64LE(bytes, offset) {
+      const view = new DataView(bytes.buffer, bytes.byteOffset + offset, 8);
+      const low = view.getUint32(0, true);
+      const high = view.getUint32(4, true);
+      return low + high * 0x100000000;
+    }
+
+    function writeUint64LE(value) {
+      const bytes = new Uint8Array(8);
+      const view = new DataView(bytes.buffer);
+      const high = Math.floor(value / 0x100000000);
+      const low = value >>> 0;
+      view.setUint32(0, low, true);
+      view.setUint32(4, high >>> 0, true);
+      return bytes;
+    }
+
+    function rotl32(value, shift) {
+      return ((value << shift) | (value >>> (32 - shift))) >>> 0;
+    }
+
+    function md5(bytes) {
+      const originalLength = bytes.length;
+      const paddedLength = alignSize(originalLength + 9, 64);
+      const padded = new Uint8Array(paddedLength);
+      padded.set(bytes);
+      padded[originalLength] = 0x80;
+
+      const bitLengthLow = (originalLength * 8) >>> 0;
+      const bitLengthHigh = Math.floor((originalLength * 8) / 0x100000000) >>> 0;
+      const lengthView = new DataView(padded.buffer);
+      lengthView.setUint32(paddedLength - 8, bitLengthLow, true);
+      lengthView.setUint32(paddedLength - 4, bitLengthHigh, true);
+
+      let a0 = 0x67452301;
+      let b0 = 0xefcdab89;
+      let c0 = 0x98badcfe;
+      let d0 = 0x10325476;
+
+      for (let offset = 0; offset < padded.length; offset += 64) {
+        const chunk = new Uint32Array(16);
+        for (let index = 0; index < 16; index += 1) {
+          chunk[index] = readUint32LE(padded, offset + index * 4);
+        }
+
+        let a = a0;
+        let b = b0;
+        let c = c0;
+        let d = d0;
+
+        for (let index = 0; index < 64; index += 1) {
+          let f = 0;
+          let g = 0;
+
+          if (index < 16) {
+            f = (b & c) | (~b & d);
+            g = index;
+          } else if (index < 32) {
+            f = (d & b) | (~d & c);
+            g = (5 * index + 1) % 16;
+          } else if (index < 48) {
+            f = b ^ c ^ d;
+            g = (3 * index + 5) % 16;
+          } else {
+            f = c ^ (b | ~d);
+            g = (7 * index) % 16;
+          }
+
+          const temp = d;
+          d = c;
+          c = b;
+          const sum = (a + f + MD5_K[index] + chunk[g]) >>> 0;
+          b = (b + rotl32(sum, MD5_SHIFTS[index])) >>> 0;
+          a = temp;
+        }
+
+        a0 = (a0 + a) >>> 0;
+        b0 = (b0 + b) >>> 0;
+        c0 = (c0 + c) >>> 0;
+        d0 = (d0 + d) >>> 0;
+      }
+
+      return concatBytes([
+        writeUint32LE(a0),
+        writeUint32LE(b0),
+        writeUint32LE(c0),
+        writeUint32LE(d0)
+      ]);
+    }
+
+    function xtime(value) {
+      return (((value << 1) ^ ((value & 0x80) ? 0x1b : 0x00)) & 0xff) >>> 0;
+    }
+
+    function mul2(value) {
+      return xtime(value);
+    }
+
+    function mul3(value) {
+      return mul2(value) ^ value;
+    }
+
+    function expandAes256Key(key) {
+      if (key.length !== 32) {
+        throw new Error("AES-256 key must be exactly 32 bytes");
+      }
+
+      const expanded = new Uint8Array(240);
+      expanded.set(key);
+      let bytesGenerated = 32;
+      let rconIndex = 1;
+      const temp = new Uint8Array(4);
+
+      while (bytesGenerated < expanded.length) {
+        temp.set(expanded.slice(bytesGenerated - 4, bytesGenerated));
+
+        if (bytesGenerated % 32 === 0) {
+          const first = temp[0];
+          temp[0] = temp[1];
+          temp[1] = temp[2];
+          temp[2] = temp[3];
+          temp[3] = first;
+          for (let index = 0; index < 4; index += 1) {
+            temp[index] = AES_SBOX[temp[index]];
+          }
+          temp[0] ^= AES_RCON[rconIndex];
+          rconIndex += 1;
+        } else if (bytesGenerated % 32 === 16) {
+          for (let index = 0; index < 4; index += 1) {
+            temp[index] = AES_SBOX[temp[index]];
+          }
+        }
+
+        for (let index = 0; index < 4; index += 1) {
+          expanded[bytesGenerated] = expanded[bytesGenerated - 32] ^ temp[index];
+          bytesGenerated += 1;
+        }
+      }
+
+      return expanded;
+    }
+
+    function addRoundKey(state, roundKey) {
+      for (let index = 0; index < 16; index += 1) {
+        state[index] ^= roundKey[index];
+      }
+    }
+
+    function subBytes(state) {
+      for (let index = 0; index < 16; index += 1) {
+        state[index] = AES_SBOX[state[index]];
+      }
+    }
+
+    function shiftRows(state) {
+      const copy = state.slice();
+      state[0] = copy[0];
+      state[4] = copy[4];
+      state[8] = copy[8];
+      state[12] = copy[12];
+
+      state[1] = copy[5];
+      state[5] = copy[9];
+      state[9] = copy[13];
+      state[13] = copy[1];
+
+      state[2] = copy[10];
+      state[6] = copy[14];
+      state[10] = copy[2];
+      state[14] = copy[6];
+
+      state[3] = copy[15];
+      state[7] = copy[3];
+      state[11] = copy[7];
+      state[15] = copy[11];
+    }
+
+    function mixColumns(state) {
+      for (let column = 0; column < 4; column += 1) {
+        const offset = column * 4;
+        const s0 = state[offset];
+        const s1 = state[offset + 1];
+        const s2 = state[offset + 2];
+        const s3 = state[offset + 3];
+
+        state[offset] = (mul2(s0) ^ mul3(s1) ^ s2 ^ s3) & 0xff;
+        state[offset + 1] = (s0 ^ mul2(s1) ^ mul3(s2) ^ s3) & 0xff;
+        state[offset + 2] = (s0 ^ s1 ^ mul2(s2) ^ mul3(s3)) & 0xff;
+        state[offset + 3] = (mul3(s0) ^ s1 ^ s2 ^ mul2(s3)) & 0xff;
+      }
+    }
+
+    function aesEncryptBlock(block, expandedKey) {
+      if (block.length !== 16) {
+        throw new Error("AES block must be exactly 16 bytes");
+      }
+
+      const state = block.slice();
+      addRoundKey(state, expandedKey.slice(0, 16));
+
+      for (let round = 1; round < 14; round += 1) {
+        subBytes(state);
+        shiftRows(state);
+        mixColumns(state);
+        addRoundKey(state, expandedKey.slice(round * 16, round * 16 + 16));
+      }
+
+      subBytes(state);
+      shiftRows(state);
+      addRoundKey(state, expandedKey.slice(224, 240));
+      return state;
+    }
+
+    function xorBlock(left, right) {
+      const result = new Uint8Array(left.length);
+      for (let index = 0; index < left.length; index += 1) {
+        result[index] = left[index] ^ right[index];
+      }
+      return result;
+    }
+
+    function encryptAesCfb(plain, key, iv) {
+      const expandedKey = expandAes256Key(key);
+      const output = new Uint8Array(plain.length);
+      let feedback = iv.slice();
+
+      for (let offset = 0; offset < plain.length; offset += AES_BLOCK_SIZE) {
+        const block = plain.slice(offset, offset + AES_BLOCK_SIZE);
+        const keystream = aesEncryptBlock(feedback, expandedKey);
+        const cipherBlock = xorBlock(block, keystream.slice(0, block.length));
+        output.set(cipherBlock, offset);
+        feedback = cipherBlock.length === AES_BLOCK_SIZE ? cipherBlock : concatBytes([cipherBlock, feedback.slice(cipherBlock.length)]);
+      }
+
+      return output;
+    }
+
+    function decryptAesCfb(cipherText, key, iv) {
+      const expandedKey = expandAes256Key(key);
+      const output = new Uint8Array(cipherText.length);
+      let feedback = iv.slice();
+
+      for (let offset = 0; offset < cipherText.length; offset += AES_BLOCK_SIZE) {
+        const block = cipherText.slice(offset, offset + AES_BLOCK_SIZE);
+        const keystream = aesEncryptBlock(feedback, expandedKey);
+        const plainBlock = xorBlock(block, keystream.slice(0, block.length));
+        output.set(plainBlock, offset);
+        feedback = block.length === AES_BLOCK_SIZE ? block : concatBytes([block, feedback.slice(block.length)]);
+      }
+
+      return output;
+    }
+
+    function passwordToKey(password) {
+      const digestHex = bytesToHex(md5(toUtf8Bytes(password)));
+      return toUtf8Bytes(digestHex);
+    }
+
+    function packVariantString(text) {
+      const raw = toUtf8Bytes(text);
+      const padding = new Uint8Array((VARIANT_PADDING - (raw.length % VARIANT_PADDING)) % VARIANT_PADDING);
+      const variantSize = raw.length + padding.length + 8;
+      return concatBytes([
+        writeUint32LE(variantSize),
+        writeUint32LE(VARIANT_STRING_TYPE),
+        writeUint32LE(raw.length),
+        raw,
+        padding
+      ]);
+    }
+
+    function unpackVariantString(plain) {
+      if (plain.length < VARIANT_HEADER_SIZE) {
+        throw new Error("解密后的 Variant 数据太短");
+      }
+
+      const variantSize = readUint32LE(plain, 0);
+      const variantType = readUint32LE(plain, 4);
+      const stringLength = readUint32LE(plain, 8);
+      const stringEnd = VARIANT_HEADER_SIZE + stringLength;
+
+      if (stringEnd > plain.length) {
+        throw new Error("Variant 字符串长度超出实际数据");
+      }
+      if (variantSize !== plain.length - 4) {
+        throw new Error("Variant size 头不匹配");
+      }
+      if (variantType !== VARIANT_STRING_TYPE) {
+        throw new Error("Variant 类型不是 String");
+      }
+
+      const padding = plain.slice(stringEnd);
+      const expectedPadding = (VARIANT_PADDING - (stringLength % VARIANT_PADDING)) % VARIANT_PADDING;
+      if (padding.length !== expectedPadding || padding.some((byte) => byte !== 0)) {
+        throw new Error("Variant 字符串尾部填充不符合预期");
+      }
+
+      return fromUtf8Bytes(plain.slice(VARIANT_HEADER_SIZE, stringEnd));
+    }
+
+    function encryptSaveBlob(plain, password, iv) {
+      const actualIv = iv || crypto.getRandomValues(new Uint8Array(16));
+      if (actualIv.length !== 16) {
+        throw new Error("IV 必须是 16 字节");
+      }
+
+      const paddedPlain = new Uint8Array(alignSize(plain.length, AES_BLOCK_SIZE));
+      paddedPlain.set(plain);
+      const key = passwordToKey(password);
+      const cipherText = encryptAesCfb(paddedPlain, key, actualIv);
+      return concatBytes([
+        Uint8Array.from(ENCRYPTED_MAGIC),
+        md5(plain),
+        writeUint64LE(plain.length),
+        actualIv,
+        cipherText
+      ]);
+    }
+
+    function decryptSaveBlob(blob, password) {
+      if (blob.length < SAVE_HEADER_SIZE) {
+        throw new Error("存档文件过短");
+      }
+      if (!bytesEqual(blob.slice(0, 4), Uint8Array.from(ENCRYPTED_MAGIC))) {
+        throw new Error("不是 GDEC 格式存档");
+      }
+
+      const expectedMd5 = blob.slice(4, 20);
+      const plainLength = readUint64LE(blob, 20);
+      const iv = blob.slice(28, 44);
+      const cipherLength = alignSize(plainLength, AES_BLOCK_SIZE);
+      const cipherEnd = SAVE_HEADER_SIZE + cipherLength;
+      const cipherText = blob.slice(SAVE_HEADER_SIZE, cipherEnd);
+
+      if (cipherText.length !== cipherLength) {
+        throw new Error("存档文件内容不完整");
+      }
+
+      const paddedPlain = decryptAesCfb(cipherText, passwordToKey(password), iv);
+      const plain = paddedPlain.slice(0, plainLength);
+      if (!bytesEqual(md5(plain), expectedMd5)) {
+        throw new Error("存档密码不匹配或文件已损坏");
+      }
+      return plain;
+    }
+
+    function deepCloneJson(data) {
+      return JSON.parse(JSON.stringify(data));
+    }
+
+    function getNestedValue(source, path) {
+      return path.reduce((current, key) => (current == null ? undefined : current[key]), source);
+    }
+
+    function setNestedValue(target, path, value) {
+      let current = target;
+      for (let index = 0; index < path.length - 1; index += 1) {
+        const key = path[index];
+        if (typeof current[key] !== "object" || current[key] === null || Array.isArray(current[key])) {
+          current[key] = {};
+        }
+        current = current[key];
+      }
+      current[path[path.length - 1]] = value;
+    }
+
+    function populateForm(data) {
+      getAllFields().forEach((field) => {
+        const input = document.getElementById(field.id);
+        const value = getNestedValue(data, field.path);
+        if (!input) {
+          return;
+        }
+        if (field.type === "checkbox") {
+          input.checked = Boolean(value);
+        } else {
+          input.value = value == null ? "" : String(value);
+        }
+      });
+      updateSummary();
+    }
+
+    function collectFormValues() {
+      const output = [];
+      getAllFields().forEach((field) => {
+        const input = document.getElementById(field.id);
+        if (!input) {
+          return;
+        }
+
+        if (field.type === "checkbox") {
+          output.push({ field, value: input.checked });
+          return;
+        }
+
+        if (field.type === "number") {
+          const value = Number(input.value);
+          if (!Number.isFinite(value)) {
+            throw new Error(`${field.label} 不是有效数字`);
+          }
+          output.push({ field, value: Math.trunc(value) });
+          return;
+        }
+
+        output.push({ field, value: input.value });
+      });
+      return output;
+    }
+
+    function buildEditedSaveData() {
+      if (!loadedSaveData) {
+        throw new Error("还没有加载存档");
+      }
+      const edited = deepCloneJson(loadedSaveData);
+      collectFormValues().forEach(({ field, value }) => {
+        setNestedValue(edited, field.path, value);
+      });
+      edited.saveCode = SAVE_CODE;
+      return edited;
+    }
+
+    function updateSummary() {
+      if (!loadedSaveData) {
+        summaryFile.textContent = "未加载";
+        summaryMap.textContent = "-";
+        summaryEconomy.textContent = "-";
+        summaryProgress.textContent = "-";
+        return;
+      }
+
+      summaryFile.textContent = uploadedFileName || "已加载";
+    summaryMap.textContent = getNestedValue(loadedSaveData, ["gameData", "gameVariables", "mapName"]) || "未填写";
+      summaryEconomy.textContent = `Lv ${document.getElementById("level").value || "0"} / G ${document.getElementById("gold").value || "0"}`;
+    summaryProgress.textContent = `${getNestedValue(loadedSaveData, ["gameData", "gameVariables", "MainTask"]) || "无任务"} · ${getNestedValue(loadedSaveData, ["gameData", "gameVariables", "GameProgress"]) ?? "0"}`;
+    }
+
+    async function handleFileSelection(event) {
+      const file = event.target.files?.[0];
+      if (!file) {
+        return;
+      }
+
+      setStatus("warn", "正在读取并解密存档...");
+
+      try {
+        const buffer = await file.arrayBuffer();
+        const blob = new Uint8Array(buffer);
+        const plain = decryptSaveBlob(blob, SAVE_PASSWORD);
+        const jsonText = unpackVariantString(plain);
+        const parsed = JSON.parse(jsonText);
+
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+          throw new Error("存档 JSON 根节点不是对象");
+        }
+
+        loadedSaveData = parsed;
+        uploadedFileName = file.name;
+        populateForm(loadedSaveData);
+        setControlsDisabled(false);
+        setStatus("ok", "存档已解密，可以直接修改右侧字段并下载新 save。其余未显示字段会保持原样。");
+      } catch (error) {
+        loadedSaveData = null;
+        uploadedFileName = "";
+        setControlsDisabled(true);
+        updateSummary();
+        setStatus("error", error instanceof Error ? error.message : "读取存档失败");
+      }
+    }
+
+    function deriveDownloadName(fileName) {
+      if (!fileName) {
+        return "chronicle-edited.save";
+      }
+      if (fileName.toLowerCase().endsWith(".save")) {
+        return `${fileName.slice(0, -5)}.edited.save`;
+      }
+      return `${fileName}.edited.save`;
+    }
+
+    function triggerDownload() {
+      try {
+        const editedData = buildEditedSaveData();
+        const jsonText = JSON.stringify(editedData);
+        const plain = packVariantString(jsonText);
+        const saveBlob = encryptSaveBlob(plain, SAVE_PASSWORD);
+        const browserBlob = new Blob([saveBlob], { type: "application/octet-stream" });
+        const url = URL.createObjectURL(browserBlob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = deriveDownloadName(uploadedFileName);
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
+        setStatus("ok", "新的 .save 已生成并开始下载。上传的原文件没有被改动。");
+      } catch (error) {
+        setStatus("error", error instanceof Error ? error.message : "回写存档失败");
+      }
+    }
+
+    function fillCurrentToMax() {
+      const hp = document.getElementById("hp");
+      const maxHp = document.getElementById("maxHp");
+      const mp = document.getElementById("mp");
+      const maxMp = document.getElementById("maxMp");
+      hp.value = maxHp.value;
+      mp.value = maxMp.value;
+      updateSummary();
+      setStatus("ok", "当前 HP 和 MP 已同步为最大值。记得点击下载。");
+    }
+
+    function boostGold() {
+      document.getElementById("gold").value = "999999";
+      updateSummary();
+      setStatus("ok", "金币已改成 999999。记得点击下载。");
+    }
+
+    function enableArchmageMode() {
+      document.getElementById("maxMp").value = "255";
+      document.getElementById("mp").value = "255";
+      updateSummary();
+      setStatus("ok", "已开启大法师模式，MP 和最大 MP 已改为 255。记得点击下载。");
+    }
+
+    function runSelfTest() {
+      try {
+        const computedKey = passwordToKey(SAVE_PASSWORD);
+        if (bytesToHex(computedKey) !== SELF_TEST_VECTOR.keyHex) {
+          throw new Error("passwordToKey 校验失败");
+        }
+
+        const packed = packVariantString(SELF_TEST_VECTOR.text);
+        if (bytesToHex(packed) !== SELF_TEST_VECTOR.plainHex) {
+          throw new Error("Variant 打包校验失败");
+        }
+
+        const blob = encryptSaveBlob(packed, SAVE_PASSWORD, hexToBytes(SELF_TEST_VECTOR.ivHex));
+        if (bytesToHex(blob) !== SELF_TEST_VECTOR.blobHex) {
+          throw new Error("加密结果和 Python 版不一致");
+        }
+
+        const unpacked = unpackVariantString(decryptSaveBlob(blob, SAVE_PASSWORD));
+        if (unpacked !== SELF_TEST_VECTOR.text) {
+          throw new Error("解密回环失败");
+        }
+
+        setSelfTestState("ok", "前端加解密自检通过");
+      } catch (error) {
+        setSelfTestState("error", error instanceof Error ? `自检失败：${error.message}` : "自检失败");
+      }
+    }
+
+    renderForm();
+    setControlsDisabled(true);
+    updateSummary();
+    runSelfTest();
+
+    saveInput.addEventListener("change", handleFileSelection);
+    downloadButton.addEventListener("click", triggerDownload);
+    fillMaxButton.addEventListener("click", fillCurrentToMax);
+    archmageButton.addEventListener("click", enableArchmageMode);
+    richButton.addEventListener("click", boostGold);
+  </script>
+</body>
+</html>
