@@ -20,15 +20,19 @@
 1. 外层 `GDEC` 加密容器。
 2. 内层 `store_var(String)` 写出的 Variant String。
 
+## 存档位置
+
+Windows 默认存档目录：
+
+```text
+C:\Users\${YourName}\AppData\Roaming\Godot\app_userdata\Chronicle of Scarlet
+```
+
+把 `${YourName}` 替换成你的 Windows 用户名。
+
 ## 依赖
 
-脚本依赖 Python 和 `pycryptodome`。
-
-当前工作区默认使用虚拟环境：
-
-- `.\.venv\Scripts\python.exe`
-
-如果你在别的环境运行，需要先安装：
+只需要安装 Python 和 `pycryptodome`：
 
 ```bash
 pip install pycryptodome
