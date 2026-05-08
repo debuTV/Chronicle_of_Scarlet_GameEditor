@@ -1,0 +1,8 @@
+# Local Python environment.
+.venv/
+__pycache__/
+*.pyc
+
+# Personal game save files and decoded save data.
+*.save
+mota*.json
